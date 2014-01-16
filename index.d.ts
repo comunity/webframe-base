@@ -32,7 +32,7 @@ declare module 'webframe-base' {
     export class Handler {
         public identified(uri: url.Url): any;
         public acceptable(accept: any): boolean;
-        public read(uri: url.Url, user: string, reqId: string, accept: string): Q.Promise<Msg>;
+        public read(uri: url.Url, user: string, reqId: string, maxAge: number, accept: string): Q.Promise<Msg>;
         public remove(uri: url.Url, user: string, reqId: string): Q.Promise<Msg>;
         public replace(uri: url.Url, user: string, reqId: string, message: Msg): Q.Promise<Msg>;
         public update(uri: url.Url, user: string, reqId: string, message: Msg, accept?: string): Q.Promise<Msg>;

@@ -1,7 +1,7 @@
 // Copyright (c) ComUnity 2013
 // hansm@comunity.co.za (Hans Malherbe)
 
-///<reference path="../../typed/underscore.string/underscore.string.d.ts" />
+///<reference path="../typed/underscore.string/underscore.string.d.ts" />
 
 import _s = require('underscore.string')
 import Logger = require('./Logger')

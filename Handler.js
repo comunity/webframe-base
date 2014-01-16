@@ -1,7 +1,7 @@
 // Copyright (c) ComUnity 2013
 // hansm@comunity.co.za (Hans Malherbe)
-///<reference path="../../typed/node/node.d.ts" />
-///<reference path="../../typed/q/Q.d.ts" />
+///<reference path="../typed/node/node.d.ts" />
+///<reference path="../typed/q/Q.d.ts" />
 var BaseMsg = require('./BaseMsg');
 
 var Q = require('q');
@@ -15,7 +15,7 @@ var Handler = (function () {
     Handler.prototype.acceptable = function (accept) {
         return true;
     };
-    Handler.prototype.read = function (uri, user, reqId, accept) {
+    Handler.prototype.read = function (uri, user, reqId, maxAge, accept) {
         return this.methodNotAllowed();
     };
     Handler.prototype.remove = function (uri, user, reqId) {

@@ -1,6 +1,6 @@
 // Copyright (c) ComUnity 2013
 // hansm@comunity.co.za (Hans Malherbe)
-///<reference path="../../typed/underscore.string/underscore.string.d.ts" />
+///<reference path="../typed/underscore.string/underscore.string.d.ts" />
 var _s = require('underscore.string');
 
 var ConsoleLogger = (function () {

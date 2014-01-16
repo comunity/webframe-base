@@ -1,8 +1,8 @@
 // Copyright (c) ComUnity 2013
 // hansm@comunity.co.za (Hans Malherbe)
 
-///<reference path="../../typed/node/node.d.ts" />
-///<reference path="../../typed/q/Q.d.ts" />
+///<reference path="../typed/node/node.d.ts" />
+///<reference path="../typed/q/Q.d.ts" />
 
 import BaseMsg = require('./BaseMsg')
 import Msg = require('./Msg')
@@ -16,7 +16,7 @@ class Handler {
     acceptable(accept: any) {
         return true
     }
-    read(uri: url.Url, user: string, reqId: string, accept: string): Q.Promise<Msg> {
+    read(uri: url.Url, user: string, reqId: string, maxAge: number, accept: string): Q.Promise<Msg> {
         return this.methodNotAllowed()
     }
     remove(uri: url.Url, user: string, reqId: string): Q.Promise<Msg> {

@@ -6,7 +6,7 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-///<reference path="../../typed/q/Q.d.ts" />
+///<reference path="../typed/q/Q.d.ts" />
 var BaseMsg = require('./BaseMsg');
 
 var Q = require('q');

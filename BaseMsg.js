@@ -14,11 +14,11 @@ var BaseMsg = (function () {
         return res.end();
     };
     BaseMsg.prototype.setHeaders = function (res) {
-        setLocalHeader(res, this.headers, 'content-type');
-        setLocalHeader(res, this.headers, 'etag');
-        setLocalHeader(res, this.headers, 'last-modified');
-        setLocalHeader(res, this.headers, 'location');
-        setLocalHeader(res, this.headers, 'cache-control');
+        var _this = this;
+        if (this.headers)
+            Object.keys(this.headers).forEach(function (header) {
+                return res.setHeader(header, _this.headers[header]);
+            });
     };
     BaseMsg.prototype.setHeader = function (res, header) {
         return setLocalHeader(res, this.headers, header);

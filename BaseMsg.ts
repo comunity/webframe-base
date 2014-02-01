@@ -17,11 +17,8 @@ class BaseMsg implements Msg {
         return res.end()
     }
     setHeaders(res: Response) {
-        setLocalHeader(res, this.headers, 'content-type')
-        setLocalHeader(res, this.headers, 'etag')
-        setLocalHeader(res, this.headers, 'last-modified')
-        setLocalHeader(res, this.headers, 'location')
-        setLocalHeader(res, this.headers, 'cache-control')
+        if (this.headers)
+            Object.keys(this.headers).forEach(header => res.setHeader(header, this.headers[header]))
     }
     setHeader(res: Response, header: string) {
         return setLocalHeader(res, this.headers, header)

@@ -26,7 +26,8 @@ declare module 'webframe-base' {
         public getBuffer(): Q.Promise<NodeBuffer>;
     }
     export class ConsoleLogger implements Logger {
-        public log(type: string, requestId: string, ctx: any): void;
+        public id(): string;
+        public log(type: string, id: string, ctx: any): string;
     }
     export function error(detail: {}, errFun: () => Error): Error;
     export class Handler {
@@ -40,7 +41,8 @@ declare module 'webframe-base' {
         public methodNotAllowed(): Q.Promise<Msg>;
     }
     export interface Logger {
-        log(type: string, requestId: string, ctx: any): any;
+        log(type: string, id: string, ctx: any): string;
+        id(): string;
     }
     export interface Msg {
         statusCode: number;

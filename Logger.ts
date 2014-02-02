@@ -2,7 +2,8 @@
 // hansm@comunity.co.za (Hans Malherbe)
 
 interface Logger {
-    log(type: string, requestId: string, ctx: any)
+    log(type: string, id: string, ctx: any): string
+    id(): string
 }
 
 export = Logger

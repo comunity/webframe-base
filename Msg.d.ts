@@ -3,7 +3,7 @@ import Response = require('./Response');
 interface Msg {
     statusCode: number;
     headers: any;
-    respond(res: Response): Q.Promise<any>;
+    respond(res: Response): any;
     setHeaders(res: Response): any;
     setHeader(res: Response, header: string): any;
     success(): boolean;

@@ -10,7 +10,7 @@ import Response = require('./Response')
 
 class ObjectMsg extends BaseMsg {
     constructor(statusCode: number, headers: any, private _obj: any) { super(statusCode, headers) }
-    respond(res: Response): Q.Promise<Msg> {
+    respond(res: Response): void {
         var body = this._obj && new Buffer(JSON.stringify(this._obj))
         if (body)
             res.setHeader('content-length', body.length.toString())
@@ -18,7 +18,7 @@ class ObjectMsg extends BaseMsg {
         this.setHeaders(res)
         if (this.statusCode)
             res.writeHead(this.statusCode)
-        return res.end(body)
+        res.end(body)
     }
     getBuffer(): Q.Promise<NodeBuffer> {
         return Q.fcall(() => new Buffer(JSON.stringify(this._obj)))

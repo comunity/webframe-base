@@ -8,7 +8,7 @@ declare module 'webframe-base' {
         public statusCode: number;
         public headers: any;
         constructor(statusCode: number, headers?: any);
-        public respond(res: Response): Q.Promise<Msg>;
+        public respond(res: Response): void;
         public setHeaders(res: Response): void;
         public setHeader(res: Response, header: string): boolean;
         public success(): boolean;
@@ -22,7 +22,7 @@ declare module 'webframe-base' {
     export class BufferMsg extends BaseMsg {
         private _buffer;
         constructor(statusCode: number, headers: any, _buffer: NodeBuffer);
-        public respond(res: Response): Q.Promise<Msg>;
+        public respond(res: Response): void;
         public getBuffer(): Q.Promise<NodeBuffer>;
     }
     export class ConsoleLogger implements Logger {
@@ -47,7 +47,7 @@ declare module 'webframe-base' {
     export interface Msg {
         statusCode: number;
         headers: any;
-        respond(res: Response): Q.Promise<any>;
+        respond(res: Response): any;
         setHeaders(res: Response): any;
         setHeader(res: Response, header: string): any;
         success(): boolean;
@@ -61,7 +61,7 @@ declare module 'webframe-base' {
     export class ObjectMsg extends BaseMsg {
         private _obj;
         constructor(statusCode: number, headers: any, _obj: any);
-        public respond(res: Response): Q.Promise<Msg>;
+        public respond(res: Response): void;
         public getBuffer(): Q.Promise<NodeBuffer>;
         public getString(): Q.Promise<string>;
         public getObject(): Q.Promise<any>;
@@ -81,8 +81,8 @@ declare module 'webframe-base' {
     export interface Response {
         writeHead(statusCode: number, reasonPhrase?: string, headers?: any): void;
         setHeader(name: string, value: string): void;
-        end(data?: any, encoding?: string): Q.Promise<Msg>;
-        pipefrom<T extends stream.ReadableStream>(source: T): Q.Promise<Msg>;
+        end(data?: any, encoding?: string): void;
+        pipefrom<T extends stream.ReadableStream>(source: T): void;
     }
     export class Status {
         public statusCode: number;
@@ -104,7 +104,7 @@ declare module 'webframe-base' {
     export class StringMsg extends BaseMsg {
         private _content;
         constructor(statusCode: number, headers: any, _content: string);
-        public respond(res: Response): Q.Promise<Msg>;
+        public respond(res: Response): void;
         public getBuffer(): Q.Promise<NodeBuffer>;
         public getString(): Q.Promise<string>;
         public getObject(): Q.Promise<any>;

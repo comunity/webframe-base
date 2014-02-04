@@ -25,7 +25,7 @@ var ObjectMsg = (function (_super) {
         this.setHeaders(res);
         if (this.statusCode)
             res.writeHead(this.statusCode);
-        return res.end(body);
+        res.end(body);
     };
     ObjectMsg.prototype.getBuffer = function () {
         var _this = this;

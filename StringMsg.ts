@@ -11,14 +11,14 @@ import Response = require('./Response')
 
 class StringMsg extends BaseMsg {
     constructor(statusCode: number, headers: any, private _content: string) { super(statusCode, headers) }
-    respond(res: Response): Q.Promise<Msg> {
+    respond(res: Response): void {
         var buffer = this._content && new Buffer(this._content)
         if (buffer)
             res.setHeader('content-length', buffer.length.toString())
         this.setHeaders(res)
         if (this.statusCode)
             res.writeHead(this.statusCode)
-        return res.end(buffer)
+        res.end(buffer)
     }
     getBuffer(): Q.Promise<NodeBuffer> {
         return Q.fcall(() => new Buffer(this._content))

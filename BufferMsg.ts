@@ -11,13 +11,13 @@ import Response = require('./Response')
 
 class BufferMsg extends BaseMsg {
     constructor(statusCode: number, headers: any, private _buffer: NodeBuffer) { super(statusCode, headers) }
-    respond(res: Response): Q.Promise<Msg> {
+    respond(res: Response): void {
         if (this._buffer)
             res.setHeader('content-length', this._buffer.length.toString())
         this.setHeaders(res)
         if (this.statusCode)
             res.writeHead(this.statusCode)
-        return res.end(this._buffer)
+        res.end(this._buffer)
     }
     getBuffer(): Q.Promise<NodeBuffer> {
         return Q.fcall(() => this._buffer)

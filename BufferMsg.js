@@ -24,7 +24,7 @@ var BufferMsg = (function (_super) {
         this.setHeaders(res);
         if (this.statusCode)
             res.writeHead(this.statusCode);
-        return res.end(this._buffer);
+        res.end(this._buffer);
     };
     BufferMsg.prototype.getBuffer = function () {
         var _this = this;

@@ -5,7 +5,7 @@ declare class BaseMsg implements Msg {
     public statusCode: number;
     public headers: any;
     constructor(statusCode: number, headers?: any);
-    public respond(res: Response): Q.Promise<Msg>;
+    public respond(res: Response): void;
     public setHeaders(res: Response): void;
     public setHeader(res: Response, header: string): boolean;
     public success(): boolean;

@@ -11,7 +11,7 @@ var BaseMsg = (function () {
     }
     BaseMsg.prototype.respond = function (res) {
         res.writeHead(this.statusCode);
-        return res.end();
+        res.end();
     };
     BaseMsg.prototype.setHeaders = function (res) {
         var _this = this;

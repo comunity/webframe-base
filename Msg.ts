@@ -9,7 +9,7 @@ import Response = require('./Response')
 interface Msg {
     statusCode: number
     headers: any
-    respond(res: Response): Q.Promise<any>
+    respond(res: Response)
     setHeaders(res: Response)
     setHeader(res: Response, header: string)
     success(): boolean

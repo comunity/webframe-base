@@ -12,9 +12,9 @@ class BaseMsg implements Msg {
         if (!this.headers)
             this.headers = {}
     }
-    respond(res: Response): Q.Promise<Msg> {
+    respond(res: Response): void {
         res.writeHead(this.statusCode)
-        return res.end()
+        res.end()
     }
     setHeaders(res: Response) {
         if (this.headers)

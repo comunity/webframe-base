@@ -16,11 +16,11 @@ class BaseMsg implements Msg {
         res.writeHead(this.statusCode)
         res.end()
     }
-    setHeaders(res: Response) {
+    setHeaders(res: Response): void {
         if (this.headers)
             Object.keys(this.headers).forEach(header => res.setHeader(header, this.headers[header]))
     }
-    setHeader(res: Response, header: string) {
+    setHeader(res: Response, header: string): boolean {
         return setLocalHeader(res, this.headers, header)
     }
     success(): boolean {
@@ -41,7 +41,7 @@ class BaseMsg implements Msg {
     getObject(): Q.Promise<any> {
         return this.getBuffer().then(buffer => buffer && buffer.length > 0 ? JSON.parse(buffer.toString()) : null)
     }
-    check(o: any, errFun: (message: string) => any) {
+    check(o: any, errFun: (message: string) => any): void {
         if (this.success())
             return
         var detail: any = {
@@ -62,7 +62,7 @@ class BaseMsg implements Msg {
 
 export = BaseMsg
 
-function setLocalHeader(res: Response, headers: any, header: string) {
+function setLocalHeader(res: Response, headers: any, header: string): boolean {
     if (!headers || !headers[header])
         return false
     res.setHeader(header, headers[header])

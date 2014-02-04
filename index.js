@@ -8,6 +8,7 @@ var Handler = require('./Handler');
 var ObjectMsg = require('./ObjectMsg');
 var privatiseHeaders = require('./privatiseHeaders');
 var Resource = require('./Resource');
+
 var Status = require('./Status');
 var statusError = require('./statusError');
 var StringMsg = require('./StringMsg');

@@ -1,6 +1,7 @@
 // Copyright (c) ComUnity 2013
 // hansm@comunity.co.za (Hans Malherbe)
 
+import Authenticate = require('./Authenticate')
 import BaseMsg = require('./BaseMsg')
 import BufferMsg = require('./BufferMsg')
 import ConsoleLogger = require('./ConsoleLogger')
@@ -9,6 +10,7 @@ import Handler = require('./Handler')
 import ObjectMsg = require('./ObjectMsg')
 import privatiseHeaders = require('./privatiseHeaders')
 import Resource = require('./Resource')
+import ResourceFactory = require('./ResourceFactory')
 import Status = require('./Status')
 import statusError = require('./statusError')
 import StringMsg = require('./StringMsg')

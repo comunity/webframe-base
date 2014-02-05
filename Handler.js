@@ -18,7 +18,7 @@ var Handler = (function () {
     Handler.prototype.read = function (uri, user, reqId, maxAge, accept) {
         return this.methodNotAllowed();
     };
-    Handler.prototype.readConditional = function (uri, user, reqId, maxAge, accept, ifNoneMatch, ifNotModifiedSince) {
+    Handler.prototype.readConditional = function (uri, user, reqId, maxAge, accept, ifNoneMatch, ifModifiedSince) {
         return this.read(uri, user, reqId, maxAge, accept);
     };
     Handler.prototype.remove = function (uri, user, reqId) {
@@ -42,3 +42,4 @@ var Handler = (function () {
 })();
 
 module.exports = Handler;
+//# sourceMappingURL=Handler.js.map

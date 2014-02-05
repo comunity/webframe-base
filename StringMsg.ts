@@ -14,7 +14,7 @@ class StringMsg extends BaseMsg {
     respond(res: Response): void {
         var buffer = this._content && new Buffer(this._content)
         if (buffer)
-            res.setHeader('content-length', buffer.length.toString())
+            res.setHeader('Content-Length', buffer.length.toString())
         this.setHeaders(res)
         if (this.statusCode)
             res.writeHead(this.statusCode)

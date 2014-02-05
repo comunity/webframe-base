@@ -13,7 +13,7 @@ class BufferMsg extends BaseMsg {
     constructor(statusCode: number, headers: any, private _buffer: NodeBuffer) { super(statusCode, headers) }
     respond(res: Response): void {
         if (this._buffer)
-            res.setHeader('content-length', this._buffer.length.toString())
+            res.setHeader('Content-Length', this._buffer.length.toString())
         this.setHeaders(res)
         if (this.statusCode)
             res.writeHead(this.statusCode)

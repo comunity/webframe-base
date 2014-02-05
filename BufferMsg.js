@@ -1,4 +1,4 @@
-// Copyright (c) ComUnity 2013
+﻿// Copyright (c) ComUnity 2013
 // hansm@comunity.co.za (Hans Malherbe)
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -20,7 +20,7 @@ var BufferMsg = (function (_super) {
     }
     BufferMsg.prototype.respond = function (res) {
         if (this._buffer)
-            res.setHeader('content-length', this._buffer.length.toString());
+            res.setHeader('Content-Length', this._buffer.length.toString());
         this.setHeaders(res);
         if (this.statusCode)
             res.writeHead(this.statusCode);
@@ -36,3 +36,4 @@ var BufferMsg = (function (_super) {
 })(BaseMsg);
 
 module.exports = BufferMsg;
+//# sourceMappingURL=BufferMsg.js.map

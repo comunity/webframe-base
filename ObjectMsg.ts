@@ -13,8 +13,8 @@ class ObjectMsg extends BaseMsg {
     respond(res: Response): void {
         var body = this._obj && new Buffer(JSON.stringify(this._obj))
         if (body)
-            res.setHeader('content-length', body.length.toString())
-        res.setHeader('content-type', 'application/json')
+            res.setHeader('Content-Length', body.length.toString())
+        res.setHeader('Content-Type', 'application/json')
         this.setHeaders(res)
         if (this.statusCode)
             res.writeHead(this.statusCode)

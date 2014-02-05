@@ -18,6 +18,9 @@ var Handler = (function () {
     Handler.prototype.read = function (uri, user, reqId, maxAge, accept) {
         return this.methodNotAllowed();
     };
+    Handler.prototype.readConditional = function (uri, user, reqId, maxAge, accept, ifNoneMatch, ifNotModifiedSince) {
+        return this.read(uri, user, reqId, maxAge, accept);
+    };
     Handler.prototype.remove = function (uri, user, reqId) {
         return this.methodNotAllowed();
     };

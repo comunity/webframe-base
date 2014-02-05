@@ -19,6 +19,9 @@ class Handler {
     read(uri: url.Url, user: string, reqId: string, maxAge: number, accept: string): Q.Promise<Msg> {
         return this.methodNotAllowed()
     }
+    readConditional(uri: url.Url, user: string, reqId: string, maxAge: number, accept: string, ifNoneMatch: string, ifNotModifiedSince: string): Q.Promise<Msg> {
+        return this.read(uri, user, reqId, maxAge, accept)
+    }
     remove(uri: url.Url, user: string, reqId: string): Q.Promise<Msg> {
         return this.methodNotAllowed()
     }

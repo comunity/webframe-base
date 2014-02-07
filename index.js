@@ -12,6 +12,7 @@ var Resource = require('./Resource');
 var Status = require('./Status');
 var statusError = require('./statusError');
 var StringMsg = require('./StringMsg');
+var UserProfile = require('./UserProfile');
 
 var o = {
     BaseMsg: BaseMsg,
@@ -24,7 +25,8 @@ var o = {
     Resource: Resource,
     Status: Status,
     statusError: statusError,
-    StringMsg: StringMsg
+    StringMsg: StringMsg,
+    UserProfile: UserProfile
 };
 
 module.exports = o;

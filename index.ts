@@ -14,6 +14,7 @@ import ResourceFactory = require('./ResourceFactory')
 import Status = require('./Status')
 import statusError = require('./statusError')
 import StringMsg = require('./StringMsg')
+import UserProfile = require('./UserProfile')
 
 var o = {
     BaseMsg: BaseMsg,
@@ -26,7 +27,8 @@ var o = {
     Resource: Resource,
     Status: Status,
     statusError: statusError,
-    StringMsg: StringMsg
+    StringMsg: StringMsg,
+    UserProfile: UserProfile
 }
 
 export = o

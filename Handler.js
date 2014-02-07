@@ -6,6 +6,8 @@ var BaseMsg = require('./BaseMsg');
 
 var Q = require('q');
 
+var UserProfile = require('./UserProfile');
+
 var Handler = (function () {
     function Handler() {
     }
@@ -15,22 +17,22 @@ var Handler = (function () {
     Handler.prototype.acceptable = function (accept) {
         return true;
     };
-    Handler.prototype.read = function (uri, user, reqId, maxAge, accept) {
+    Handler.prototype.read = function (uri, up, reqId, maxAge, accept) {
         return this.methodNotAllowed();
     };
-    Handler.prototype.readConditional = function (uri, user, reqId, maxAge, accept, ifNoneMatch, ifModifiedSince) {
-        return this.read(uri, user, reqId, maxAge, accept);
+    Handler.prototype.readConditional = function (uri, up, reqId, maxAge, accept, ifNoneMatch, ifModifiedSince) {
+        return this.read(uri, up, reqId, maxAge, accept);
     };
-    Handler.prototype.remove = function (uri, user, reqId) {
+    Handler.prototype.remove = function (uri, up, reqId) {
         return this.methodNotAllowed();
     };
-    Handler.prototype.replace = function (uri, user, reqId, message) {
+    Handler.prototype.replace = function (uri, up, reqId, message) {
         return this.methodNotAllowed();
     };
-    Handler.prototype.update = function (uri, user, reqId, message, accept) {
+    Handler.prototype.update = function (uri, up, reqId, message, accept) {
         return this.methodNotAllowed();
     };
-    Handler.prototype.exec = function (uri, user, reqId, message, accept) {
+    Handler.prototype.exec = function (uri, up, reqId, message, accept) {
         return this.methodNotAllowed();
     };
     Handler.prototype.methodNotAllowed = function () {

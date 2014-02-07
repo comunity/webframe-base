@@ -8,6 +8,7 @@ import BaseMsg = require('./BaseMsg')
 import Msg = require('./Msg')
 import Q = require('q')
 import url = require('url')
+import UserProfile = require('./UserProfile')
 
 class Handler {
     identified(uri: url.Url): any {
@@ -16,22 +17,22 @@ class Handler {
     acceptable(accept: any) {
         return true
     }
-    read(uri: url.Url, user: string, reqId: string, maxAge: number, accept: string): Q.Promise<Msg> {
+    read(uri: url.Url, up: UserProfile, reqId: string, maxAge: number, accept: string): Q.Promise<Msg> {
         return this.methodNotAllowed()
     }
-    readConditional(uri: url.Url, user: string, reqId: string, maxAge: number, accept: string, ifNoneMatch: string, ifModifiedSince: string): Q.Promise<Msg> {
-        return this.read(uri, user, reqId, maxAge, accept)
+    readConditional(uri: url.Url, up: UserProfile, reqId: string, maxAge: number, accept: string, ifNoneMatch: string, ifModifiedSince: string): Q.Promise<Msg> {
+        return this.read(uri, up, reqId, maxAge, accept)
     }
-    remove(uri: url.Url, user: string, reqId: string): Q.Promise<Msg> {
+    remove(uri: url.Url, up: UserProfile, reqId: string): Q.Promise<Msg> {
         return this.methodNotAllowed()
     }
-    replace(uri: url.Url, user: string, reqId: string, message: Msg): Q.Promise<Msg> {
+    replace(uri: url.Url, up: UserProfile, reqId: string, message: Msg): Q.Promise<Msg> {
         return this.methodNotAllowed()
     }
-    update(uri: url.Url, user: string, reqId: string, message: Msg, accept?: string): Q.Promise<Msg> {
+    update(uri: url.Url, up: UserProfile, reqId: string, message: Msg, accept?: string): Q.Promise<Msg> {
         return this.methodNotAllowed()
     }
-    exec(uri: url.Url, user: string, reqId: string, message: Msg, accept?: string): Q.Promise<Msg> {
+    exec(uri: url.Url, up: UserProfile, reqId: string, message: Msg, accept?: string): Q.Promise<Msg> {
         return this.methodNotAllowed()
     }
     methodNotAllowed(): Q.Promise<Msg> {

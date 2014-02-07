@@ -42,4 +42,3 @@ var Handler = (function () {
 })();
 
 module.exports = Handler;
-//# sourceMappingURL=Handler.js.map

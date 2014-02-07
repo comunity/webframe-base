@@ -1,4 +1,4 @@
-﻿// Copyright (c) ComUnity 2013
+// Copyright (c) ComUnity 2013
 // hansm@comunity.co.za (Hans Malherbe)
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -49,4 +49,3 @@ var StringMsg = (function (_super) {
 })(BaseMsg);
 
 module.exports = StringMsg;
-//# sourceMappingURL=StringMsg.js.map

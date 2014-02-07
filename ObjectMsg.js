@@ -49,4 +49,3 @@ var ObjectMsg = (function (_super) {
 })(BaseMsg);
 
 module.exports = ObjectMsg;
-//# sourceMappingURL=ObjectMsg.js.map

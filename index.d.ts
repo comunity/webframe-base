@@ -77,7 +77,7 @@ declare module 'webframe-base' {
         public methodNotAllowed(): Q.Promise<Msg>;
     }
     export interface ResourceFactory {
-        create(url: string, user: string, pw: string): Resource;
+        create(url: string, up: UserProfile): Resource;
     }
     export interface Response {
         writeHead(statusCode: number, reasonPhrase?: string, headers?: any): void;
@@ -109,5 +109,12 @@ declare module 'webframe-base' {
         public getBuffer(): Q.Promise<NodeBuffer>;
         public getString(): Q.Promise<string>;
         public getObject(): Q.Promise<any>;
+    }
+    export class UserProfile {
+        public login: string;
+        public password: string;
+        public detail: any;
+        constructor(login: string, password: string, detail: any);
+        static make(login: string, password: string): UserProfile;
     }
 }

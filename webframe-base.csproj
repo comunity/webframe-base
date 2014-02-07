@@ -73,6 +73,7 @@
     <Content Include="Status.ts" />
     <Content Include="statusError.ts" />
     <Content Include="StringMsg.ts" />
+    <TypeScriptCompile Include="UserProfile.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="package.json" />

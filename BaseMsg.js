@@ -1,7 +1,5 @@
 // Copyright (c) ComUnity 2013
 // hansm@comunity.co.za (Hans Malherbe)
-var Q = require('q');
-
 var BaseMsg = (function () {
     function BaseMsg(statusCode, headers) {
         this.statusCode = statusCode;

@@ -6,8 +6,6 @@ var BaseMsg = require('./BaseMsg');
 
 var Q = require('q');
 
-var UserProfile = require('./UserProfile');
-
 var Handler = (function () {
     function Handler() {
     }

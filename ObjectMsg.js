@@ -19,9 +19,11 @@ var ObjectMsg = (function (_super) {
     }
     ObjectMsg.prototype.respond = function (res) {
         var body = this._obj && new Buffer(JSON.stringify(this._obj));
-        if (body)
+        if (body) {
             res.setHeader('Content-Length', body.length.toString());
-        res.setHeader('Content-Type', 'application/json');
+            if (body.length && this.statusCode !== 204)
+                res.setHeader('Content-Type', 'application/json');
+        }
         this.setHeaders(res);
         if (this.statusCode)
             res.writeHead(this.statusCode);

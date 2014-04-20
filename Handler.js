@@ -15,22 +15,22 @@ var Handler = (function () {
     Handler.prototype.acceptable = function (accept) {
         return true;
     };
-    Handler.prototype.read = function (uri, up, reqId, maxAge, accept) {
+    Handler.prototype.read = function (uri, up, reqId, headers, maxAge) {
         return this.methodNotAllowed();
     };
-    Handler.prototype.readConditional = function (uri, up, reqId, maxAge, accept, ifNoneMatch, ifModifiedSince) {
-        return this.read(uri, up, reqId, maxAge, accept);
+    Handler.prototype.readConditional = function (uri, up, reqId, headers, maxAge) {
+        return this.read(uri, up, reqId, headers, maxAge);
     };
-    Handler.prototype.remove = function (uri, up, reqId) {
+    Handler.prototype.remove = function (uri, up, reqId, headers) {
         return this.methodNotAllowed();
     };
-    Handler.prototype.replace = function (uri, up, reqId, message) {
+    Handler.prototype.replace = function (uri, up, reqId, headers, message) {
         return this.methodNotAllowed();
     };
-    Handler.prototype.update = function (uri, up, reqId, message, accept) {
+    Handler.prototype.update = function (uri, up, reqId, headers, message) {
         return this.methodNotAllowed();
     };
-    Handler.prototype.exec = function (uri, up, reqId, message, accept) {
+    Handler.prototype.exec = function (uri, up, reqId, headers, message) {
         return this.methodNotAllowed();
     };
     Handler.prototype.methodNotAllowed = function () {

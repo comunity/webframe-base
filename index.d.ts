@@ -33,12 +33,12 @@ declare module 'webframe-base' {
     export class Handler {
         public identified(uri: url.Url): any;
         public acceptable(accept: any): boolean;
-        public read(uri: url.Url, up: UserProfile, reqId: string, maxAge: number, accept: string): Q.Promise<Msg>;
-        public readConditional(uri: url.Url, up: UserProfile, reqId: string, maxAge: number, accept: string, ifNoneMatch: string, ifModifiedSince: string): Q.Promise<Msg>;
-        public remove(uri: url.Url, up: UserProfile, reqId: string): Q.Promise<Msg>;
-        public replace(uri: url.Url, up: UserProfile, reqId: string, message: Msg): Q.Promise<Msg>;
-        public update(uri: url.Url, up: UserProfile, reqId: string, message: Msg, accept?: string): Q.Promise<Msg>;
-        public exec(uri: url.Url, up: UserProfile, reqId: string, message: Msg, accept?: string): Q.Promise<Msg>;
+        public read(uri: url.Url, up: UserProfile, reqId: string, headers: any, maxAge: number): Q.Promise<Msg>;
+        public readConditional(uri: url.Url, up: UserProfile, reqId: string, headers: any, maxAge: number): Q.Promise<Msg>;
+        public remove(uri: url.Url, up: UserProfile, reqId: string, headers: any): Q.Promise<Msg>;
+        public replace(uri: url.Url, up: UserProfile, reqId: string, headers: any, message: Msg): Q.Promise<Msg>;
+        public update(uri: url.Url, up: UserProfile, reqId: string, headers: any, message: Msg): Q.Promise<Msg>;
+        public exec(uri: url.Url, up: UserProfile, reqId: string, headers: any, message: Msg): Q.Promise<Msg>;
         public methodNotAllowed(): Q.Promise<Msg>;
     }
     export interface Logger {

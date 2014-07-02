@@ -1,8 +1,9 @@
 declare module 'webframe-base' {
     import stream = require('stream')
     import url = require('url');
+    import http = require('http');
     export interface Authenticate {
-        check(user: string, password: string, track: string): Q.Promise<boolean>;
+        check(user: string, password: string, req: http.ServerRequest, track: string): Q.Promise<boolean>;
     }
     export class BaseMsg implements Msg {
         public statusCode: number;

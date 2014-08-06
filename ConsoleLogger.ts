@@ -3,32 +3,54 @@
 
 ///<reference path="../typed/underscore.string/underscore.string.d.ts" />
 
+import util = require('util')
 import _s = require('underscore.string')
 import Logger = require('./Logger')
+var os = require("os");
 
-var uuid = require('node-uuid')
 
 class ConsoleLogger implements Logger {
-    id(): string {
-        return uuid.v4()
+    private _id: number
+    private _prefix: string
+    constructor() {
+        this._id = 0
+        this._prefix = os.hostname() + '~' + process.pid + '~'
     }
-    log(type: string, id: string, ctx: any): string {
-        if (!id)
-            id = this.id()
-        var start = (ctx && ctx.start && (Math.round(process.hrtime(ctx.start)[1] / 1000000))) || ''
-        if (ctx && ctx.url) {
-            console.log(id && (id.substring(0, 4) + id.substring(id.length - 4)),
-                _s.lpad(<any>start, 4),
-                _s.rpad(ctx.statusCode || '', 3),
+    id(): string {
+        return this._prefix + ++this._id
+    }
+    log(type: string, requestId: string, start: number[], req, statusCode: number, user: string, headers, err, reqBody, resBody): string {
+        if (!requestId)
+            requestId = this.id()
+        if (type === 'error' && (statusCode && statusCode >= 500))
+            console.log('[' + type + ']', requestId, process.hrtime(), process.pid, err, reqBody, resBody)
+        else if (type === 'flow')
+            console.log(requestId && (requestId.substring(0, 4) + requestId.substring(requestId.length - 4)),
+                _s.lpad('', 4),
+                _s.rpad('', 3),
                 _s.rpad(type, 5),
-                _s.rpad(ctx.method, 5),
-                ctx.url)
-        } else if (type === 'error')
-            console.log('[' + type + ']', id, process.hrtime(), process.pid, ctx)
-        else
-            console.log('[' + type + ']', id, process.hrtime(), process.pid, ctx)
-        return id
+                _s.rpad(req && req.method, 5),
+                req && req.url,
+                reqBody)
+        else {
+            var time = (start && (getTimedifferenceMillis(start))) || ''
+            if (req && req.url)
+                console.log(requestId,
+                    _s.lpad(<any>time, 6),
+                    _s.rpad(statusCode+'', 3),
+                    _s.rpad(type, 5),
+                    _s.rpad(req && req.method, 5),
+                    req.url)
+            else
+                console.log('[' + type + ']', requestId, process.hrtime(), process.pid)
+        }
+        return requestId
     }
 }
 
 export = ConsoleLogger
+
+function getTimedifferenceMillis(start: number[]): number {
+    var timespan = process.hrtime(start)
+    return timespan[0] * 1000 + Math.round(timespan[1] / 1000000)
+}

@@ -19,7 +19,7 @@ class ConsoleLogger implements Logger {
     id(): string {
         return this._prefix + ++this._id
     }
-    log(type: string, requestId: string, start: number[], req, statusCode: number, user: string, headers, err, reqBody, resBody): string {
+    log(type: string, requestId: string, start: number[], method: string, url: string, statusCode: number, user?: string, reqHeaders?, err?, reqBody?, resBody?, resHeaders?): string {
         if (!requestId)
             requestId = this.id()
         if (type === 'error' && (statusCode && statusCode >= 500))
@@ -29,20 +29,19 @@ class ConsoleLogger implements Logger {
                 _s.lpad('', 4),
                 _s.rpad('', 3),
                 _s.rpad(type, 5),
-                _s.rpad(req && req.method, 5),
-                req && req.url,
+                _s.rpad(method, 5),
+                url,
                 reqBody)
         else {
             var time = (start && (getTimedifferenceMillis(start))) || ''
-            if (req && req.url)
-                console.log(requestId,
-                    _s.lpad(<any>time, 6),
-                    _s.rpad(statusCode+'', 3),
-                    _s.rpad(type, 5),
-                    _s.rpad(req && req.method, 5),
-                    req.url)
-            else
-                console.log('[' + type + ']', requestId, process.hrtime(), process.pid)
+            var line = requestId + ' ' + _s.lpad(<any>time, 6) + ' ' + _s.rpad(statusCode+'', 3) + ' ' + _s.rpad(type, 5) + ' ' + _s.rpad(method, 5)
+            if (url) {
+                if (url.length + line.length > 228)
+                    line += ' ' + url.substring(0, 228 - line.length)
+                else
+                    line += url
+            }
+            console.log(line)
         }
         return requestId
     }

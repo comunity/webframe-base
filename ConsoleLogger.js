@@ -12,19 +12,23 @@ var ConsoleLogger = (function () {
     ConsoleLogger.prototype.id = function () {
         return this._prefix + ++this._id;
     };
-    ConsoleLogger.prototype.log = function (type, requestId, start, req, statusCode, user, headers, err, reqBody, resBody) {
+    ConsoleLogger.prototype.log = function (type, requestId, start, method, url, statusCode, user, reqHeaders, err, reqBody, resBody, resHeaders) {
         if (!requestId)
             requestId = this.id();
         if (type === 'error' && (statusCode && statusCode >= 500))
             console.log('[' + type + ']', requestId, process.hrtime(), process.pid, err, reqBody, resBody);
         else if (type === 'flow')
-            console.log(requestId && (requestId.substring(0, 4) + requestId.substring(requestId.length - 4)), _s.lpad('', 4), _s.rpad('', 3), _s.rpad(type, 5), _s.rpad(req && req.method, 5), req && req.url, reqBody);
+            console.log(requestId && (requestId.substring(0, 4) + requestId.substring(requestId.length - 4)), _s.lpad('', 4), _s.rpad('', 3), _s.rpad(type, 5), _s.rpad(method, 5), url, reqBody);
         else {
             var time = (start && (getTimedifferenceMillis(start))) || '';
-            if (req && req.url)
-                console.log(requestId, _s.lpad(time, 6), _s.rpad(statusCode + '', 3), _s.rpad(type, 5), _s.rpad(req && req.method, 5), req.url);
-            else
-                console.log('[' + type + ']', requestId, process.hrtime(), process.pid);
+            var line = requestId + ' ' + _s.lpad(time, 6) + ' ' + _s.rpad(statusCode + '', 3) + ' ' + _s.rpad(type, 5) + ' ' + _s.rpad(method, 5);
+            if (url) {
+                if (url.length + line.length > 228)
+                    line += ' ' + url.substring(0, 228 - line.length);
+                else
+                    line += url;
+            }
+            console.log(line);
         }
         return requestId;
     };

@@ -43,7 +43,7 @@ declare module 'webframe-base' {
         public methodNotAllowed(): Q.Promise<Msg>;
     }
     export interface Logger {
-        log(type: string, requestId: string, start: number[], req, statusCode: number, user: string, headers, err, reqBody, resBody): string;
+        log(type: string, requestId: string, start: number[], method: string, url: string, statusCode: number, user?: string, reqHeaders?, err?, reqBody?, resBody?, resHeaders?): string;
         id(): string;
     }
     export interface Msg {

@@ -67,7 +67,11 @@ declare module 'webframe-base' {
     }
     export class ObjectMsg extends BaseMsg {
 	    private _obj;
+	    private _json;
 	    constructor(statusCode: number, headers: any, _obj: any);
+	    public json(): string;
+	    public sha1(): string;
+	    public cache(maxAge: number, etag: string): Msg;
 	    public respond(res: Response): void;
 	    public getBuffer(): Q.Promise<NodeBuffer>;
 	    public getString(): Q.Promise<string>;

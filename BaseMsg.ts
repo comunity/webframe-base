@@ -12,6 +12,12 @@ class BaseMsg implements Msg {
         if (!this.headers)
             this.headers = {}
     }
+    cache(maxAge: number, etag: string): void {
+        this.headers['Cache-Control'] = 'public, max-age=' + maxAge
+        this.headers['Vary'] = 'accept-encoding'
+        if (etag)
+            this.headers['ETag'] = '"' + etag + '"'
+    }
     respond(res: Response): void {
         res.writeHead(this.statusCode)
         res.end()

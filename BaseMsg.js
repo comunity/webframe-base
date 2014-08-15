@@ -7,6 +7,12 @@ var BaseMsg = (function () {
         if (!this.headers)
             this.headers = {};
     }
+    BaseMsg.prototype.cache = function (maxAge, etag) {
+        this.headers['Cache-Control'] = 'public, max-age=' + maxAge;
+        this.headers['Vary'] = 'accept-encoding';
+        if (etag)
+            this.headers['ETag'] = '"' + etag + '"';
+    };
     BaseMsg.prototype.respond = function (res) {
         res.writeHead(this.statusCode);
         res.end();

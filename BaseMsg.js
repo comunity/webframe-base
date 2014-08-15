@@ -12,6 +12,7 @@ var BaseMsg = (function () {
         this.headers['Vary'] = 'accept-encoding';
         if (etag)
             this.headers['ETag'] = '"' + etag + '"';
+        return this;
     };
     BaseMsg.prototype.respond = function (res) {
         res.writeHead(this.statusCode);

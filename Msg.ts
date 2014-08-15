@@ -10,7 +10,7 @@ interface Msg {
     statusCode: number
     headers: any
 
-    cache(maxAge: number, etag: string): void
+    cache(maxAge: number, etag: string): Msg
     respond(res: Response): void
     setHeaders(res: Response): void
     setHeader(res: Response, header: string): boolean

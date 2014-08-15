@@ -9,7 +9,7 @@ declare module 'webframe-base' {
 	    public statusCode: number;
 	    public headers: any;
 	    constructor(statusCode: number, headers?: any);
-	    public cache(maxAge: number, etag: string): void;
+	    public cache(maxAge: number, etag: string): Msg;
 	    public respond(res: Response): void;
 	    public setHeaders(res: Response): void;
 	    public setHeader(res: Response, header: string): boolean;
@@ -53,7 +53,7 @@ declare module 'webframe-base' {
     export interface Msg {
 	    statusCode: number;
 	    headers: any;
-	    cache(maxAge: number, etag: string): void;
+	    cache(maxAge: number, etag: string): Msg;
 	    respond(res: Response): void;
 	    setHeaders(res: Response): void;
 	    setHeader(res: Response, header: string): boolean;

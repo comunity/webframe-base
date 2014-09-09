@@ -64,6 +64,7 @@ declare module 'webframe-base' {
 	    getBuffer(): Q.Promise<NodeBuffer>;
 	    getString(): Q.Promise<string>;
 	    getObject(): Q.Promise<any>;
+	    getObjectWithDigest(): Q.Promise<any>;
 	    check(o: any, errFun: (message: string) => any): void;
     }
     export class ObjectMsg extends BaseMsg {

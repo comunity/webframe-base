@@ -3,6 +3,7 @@
 
 ///<reference path="../typed/q/Q.d.ts" />
 
+import crypto = require('crypto')
 import Msg = require('./Msg')
 import Q = require('q')
 import Response = require('./Response')
@@ -47,6 +48,18 @@ class BaseMsg implements Msg {
     }
     getObject(): Q.Promise<any> {
         return this.getBuffer().then(buffer => buffer && buffer.length > 0 ? JSON.parse(buffer.toString()) : null)
+    }
+    getObjectWithDigest(): Q.Promise<any> {
+        return this.getBuffer().then(buffer => {
+            if (!buffer || buffer.length === 0)
+                return null
+            var hash = crypto.createHash('sha1')
+            hash.update(buffer)
+            var digest = hash.digest('hex')
+            var o = JSON.parse(buffer.toString())
+            o.digest = digest
+            return o
+        })
     }
     check(o: any, errFun: (message: string) => any): void {
         if (this.success())

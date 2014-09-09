@@ -1,5 +1,8 @@
 // Copyright (c) ComUnity 2013
 // hansm@comunity.co.za (Hans Malherbe)
+///<reference path="../typed/q/Q.d.ts" />
+var crypto = require('crypto');
+
 var BaseMsg = (function () {
     function BaseMsg(statusCode, headers) {
         this.statusCode = statusCode;
@@ -48,6 +51,18 @@ var BaseMsg = (function () {
     BaseMsg.prototype.getObject = function () {
         return this.getBuffer().then(function (buffer) {
             return buffer && buffer.length > 0 ? JSON.parse(buffer.toString()) : null;
+        });
+    };
+    BaseMsg.prototype.getObjectWithDigest = function () {
+        return this.getBuffer().then(function (buffer) {
+            if (!buffer || buffer.length === 0)
+                return null;
+            var hash = crypto.createHash('sha1');
+            hash.update(buffer);
+            var digest = hash.digest('hex');
+            var o = JSON.parse(buffer.toString());
+            o.digest = digest;
+            return o;
         });
     };
     BaseMsg.prototype.check = function (o, errFun) {

@@ -81,11 +81,11 @@ declare module 'webframe-base' {
     }
     export function privatiseHeaders(headers: any): any;
     export class Resource {
-	    public read(track: string, accept: string): Q.Promise<Msg>;
-	    public remove(track: string, accept: string): Q.Promise<Msg>;
-	    public replace(track: string, rep: Msg, accept?: string): Q.Promise<Msg>;
-	    public update(track: string, rep: Msg, accept?: string): Q.Promise<Msg>;
-	    public exec(track: string, rep: Msg, accept?: string): Q.Promise<Msg>;
+	    public read(track: string, accept: any): Q.Promise<Msg>;
+	    public remove(track: string, accept: any): Q.Promise<Msg>;
+	    public replace(track: string, rep: Msg, accept?: any): Q.Promise<Msg>;
+	    public update(track: string, rep: Msg, accept?: any): Q.Promise<Msg>;
+	    public exec(track: string, rep: Msg, accept?: any): Q.Promise<Msg>;
 	    public methodNotAllowed(): Q.Promise<Msg>;
     }
     export interface ResourceFactory {

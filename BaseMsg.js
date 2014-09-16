@@ -59,7 +59,7 @@ var BaseMsg = (function () {
         var _this = this;
         if (this._cachedObject) {
             return Q.fcall(function () {
-                return this._cachedObject;
+                return _this._cachedObject;
             });
         }
         return this.getBuffer().then(function (buffer) {

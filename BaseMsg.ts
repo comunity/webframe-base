@@ -52,9 +52,7 @@ class BaseMsg implements Msg {
     }
     getObjectWithDigest(): Q.Promise<any> {
         if (this._cachedObject) {
-            return Q.fcall(function () {
-                return this._cachedObject
-            })
+            return Q.fcall(() => this._cachedObject)
         }
         return this.getBuffer().then(buffer => {
             if (!buffer || buffer.length === 0)

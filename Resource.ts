@@ -8,19 +8,19 @@ import Msg = require('./Msg')
 import Q = require('q')
 
 class Resource {
-    read(track: string, accept: string): Q.Promise<Msg> {
+    read(track: string, accept: any): Q.Promise<Msg> {
         return this.methodNotAllowed()
     }
-    remove(track: string, accept: string): Q.Promise<Msg> {
+    remove(track: string, accept: any): Q.Promise<Msg> {
         return this.methodNotAllowed()
     }
-    replace(track: string, rep: Msg, accept?: string): Q.Promise<Msg> {
+    replace(track: string, rep: Msg, accept?: any): Q.Promise<Msg> {
         return this.methodNotAllowed()
     }
-    update(track: string, rep: Msg, accept?: string): Q.Promise<Msg> {
+    update(track: string, rep: Msg, accept?: any): Q.Promise<Msg> {
         return this.methodNotAllowed()
     }
-    exec(track: string, rep: Msg, accept?: string): Q.Promise<Msg> {
+    exec(track: string, rep: Msg, accept?: any): Q.Promise<Msg> {
         return this.methodNotAllowed()
     }
     methodNotAllowed(): Q.Promise<Msg> {

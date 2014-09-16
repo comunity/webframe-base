@@ -3,6 +3,8 @@
 ///<reference path="../typed/q/Q.d.ts" />
 var crypto = require('crypto');
 
+var Q = require('q');
+
 var BaseMsg = (function () {
     function BaseMsg(statusCode, headers) {
         this.statusCode = statusCode;
@@ -54,6 +56,12 @@ var BaseMsg = (function () {
         });
     };
     BaseMsg.prototype.getObjectWithDigest = function () {
+        var _this = this;
+        if (this._cachedObject) {
+            return Q.fcall(function () {
+                return this._cachedObject;
+            });
+        }
         return this.getBuffer().then(function (buffer) {
             if (!buffer || buffer.length === 0)
                 return null;
@@ -62,6 +70,7 @@ var BaseMsg = (function () {
             var digest = hash.digest('hex');
             var o = JSON.parse(buffer.toString());
             o.digest = digest;
+            _this._cachedObject = o;
             return o;
         });
     };

@@ -9,6 +9,7 @@ import Q = require('q')
 import Response = require('./Response')
 
 class BaseMsg implements Msg {
+    private _cachedObject
     constructor(public statusCode: number, public headers?: any) {
         if (!this.headers)
             this.headers = {}
@@ -50,6 +51,11 @@ class BaseMsg implements Msg {
         return this.getBuffer().then(buffer => buffer && buffer.length > 0 ? JSON.parse(buffer.toString()) : null)
     }
     getObjectWithDigest(): Q.Promise<any> {
+        if (this._cachedObject) {
+            return Q.fcall(function () {
+                return this._cachedObject
+            })
+        }
         return this.getBuffer().then(buffer => {
             if (!buffer || buffer.length === 0)
                 return null
@@ -58,6 +64,7 @@ class BaseMsg implements Msg {
             var digest = hash.digest('hex')
             var o = JSON.parse(buffer.toString())
             o.digest = digest
+            this._cachedObject = o
             return o
         })
     }

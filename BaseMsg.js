@@ -25,7 +25,7 @@ var BaseMsg = (function () {
     };
     BaseMsg.prototype.setHeaders = function (res) {
         var _this = this;
-        if (this.headers)
+        if (this.headers && typeof this.headers === 'object')
             Object.keys(this.headers).forEach(function (header) {
                 return res.setHeader(header, _this.headers[header]);
             });

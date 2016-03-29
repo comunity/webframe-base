@@ -26,7 +26,7 @@ class BaseMsg implements Msg {
         res.end()
     }
     setHeaders(res: Response): void {
-        if (this.headers)
+        if (this.headers && typeof this.headers === 'object')
             Object.keys(this.headers).forEach(header => res.setHeader(header, this.headers[header]))
     }
     setHeader(res: Response, header: string): boolean {

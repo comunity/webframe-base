@@ -1,7 +1,7 @@
 {
   "name": "webframe-base",
   "description": "Node.js framework for building REST systems",
-  "version": "0.7.22",
+  "version": "0.7.23",
   "repository": {
     "type": "git",
     "url": "git://github.com/comunity/webframe-base.git"

@@ -13,9 +13,9 @@
   "license": "MIT",
   "homepage": "https://github.com/comunity/webframe-base",
   "dependencies": {
-	"node-uuid": "*",
-    "underscore.string": "*"
-    },
+    "underscore.string": "*",
+    "uuid": "^3.0.0"
+  },
   "devDependencies": {},
   "author": {
     "name": "Hans Malherbe",
